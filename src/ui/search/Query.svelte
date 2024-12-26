@@ -37,21 +37,22 @@
 </label>
 
 <script lang="ts" module>
-	import { page } from '$app/state'
 	import { replaceState } from '$app/navigation'
 
 	let input: HTMLInputElement
-	let query = $state(page.url.searchParams.get('q') ?? '')
+	let query = $state('')
 
 	export const q = () => query
 </script>
 
 <script lang="ts">
+	import { page } from '$app/state'
 	import { afterNavigate } from '$app/navigation'
 
-	query = page.url.searchParams.get('q') ?? ''
-
-	afterNavigate(() => {
+	function setQuery() {
 		query = page.url.searchParams.get('q') ?? ''
-	})
+	}
+
+	setQuery()
+	afterNavigate(setQuery)
 </script>

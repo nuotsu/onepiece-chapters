@@ -21,11 +21,7 @@
 </label>
 
 <script lang="ts" module>
-	let number = $state<number | undefined>(
-		page.url.searchParams.has('n')
-			? Number(page.url.searchParams.get('n'))
-			: undefined,
-	)
+	let number = $state<number | undefined>()
 
 	export const n = () => number
 </script>
