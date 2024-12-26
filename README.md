@@ -4,4 +4,4 @@
 
 ## Directory
 
-- [`chapters.yml`](chapters.yml)
+- [`chapters.yml`](chapters.yml) (Japanese and English)
