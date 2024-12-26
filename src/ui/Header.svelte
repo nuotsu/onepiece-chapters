@@ -1,5 +1,5 @@
 <header
-	class="text-center p-2 sticky top-0 bg-white/80 backdrop-blur flex items-center justify-between gap-4"
+	class="text-center p-2 sticky top-0 bg-white/80 backdrop-blur flex items-center justify-between gap-4 z-10 max-w-lg mx-auto"
 	bind:offsetHeight
 >
 	<h1><a href="/">One Piece Chapters</a></h1>

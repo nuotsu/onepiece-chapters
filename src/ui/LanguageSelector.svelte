@@ -15,9 +15,11 @@
 	const langs = [
 		{ value: 'ja', label: '🇯🇵' },
 		{ value: 'en', label: '🇺🇸' },
-	]
+	] as const
 
 	export const langs_str = langs.map((lang) => lang.value)
 
 	let lang = $state(langs[0].value)
+
+	export const l = () => lang
 </script>

@@ -1,6 +1,6 @@
 <Header />
 
-<main>{@render children()}</main>
+<main class="max-w-lg mx-auto">{@render children()}</main>
 
 <Footer />
 

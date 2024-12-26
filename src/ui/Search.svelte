@@ -1,18 +1,56 @@
-<search>
+<svelte:window
+	on:keydown={(e) => {
+		if (e.metaKey && e.key === 'k') {
+			input.select()
+		}
+	}}
+/>
+
+<search class="bg-white">
 	<label
 		class="flex items-center border focus-within:border-gray-300 border-gray-100"
 	>
-		<img class="px-1" src="https://icons.nuotsu.dev/vsc/VscSearch" alt="" />
+		<img
+			class="px-1 size-6"
+			src="https://icons.nuotsu.dev/vsc/VscSearch"
+			alt=""
+			loading="lazy"
+		/>
 
 		<input
+			bind:this={input}
 			class="grow outline-none"
-			bind:value={query}
 			type="search"
+			bind:value={query}
 			placeholder="Search"
+			oninput={() => {
+				const url = new URL(page.url)
+
+				if (query) {
+					url.searchParams.set('q', query)
+				} else {
+					url.searchParams.delete('q')
+				}
+
+				replaceState(url.toString(), {})
+			}}
 		/>
 	</label>
 </search>
 
+<style>
+	search:focus-within {
+		position: sticky;
+		top: var(--header-height);
+	}
+</style>
+
 <script lang="ts" module>
+	import { replaceState } from '$app/navigation'
+	import { page } from '$app/state'
+
+	let input: HTMLInputElement
 	let query = $state('')
+
+	export const q = () => query
 </script>

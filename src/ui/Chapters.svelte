@@ -1,16 +1,22 @@
-<table>
+<table class="w-full">
 	<tbody>
 		{#each Object.entries(chapters) as [key, chapter]}
-			<tr id="ch-{key}">
-				<th lang="ja">第{key}話</th>
-				<th lang="en">Ch.{key}</th>
+			{#if !hideOnSearch(chapter)}
+				<tr id="ch-{key}">
+					<th>
+						<span lang="ja">第{key}話</span>
+						<span lang="en">Ch.{key}</span>
+					</th>
 
-				{#each langs_str as lang}
-					<td {lang}>
-						<a href="#ch-{key}">{chapter[lang]}</a>
+					<td class="w-full">
+						{#each langs_str as lang}
+							<div {lang}>
+								<a href="#ch-{key}">{chapter[lang]}</a>
+							</div>
+						{/each}
 					</td>
-				{/each}
-			</tr>
+				</tr>
+			{/if}
 		{/each}
 	</tbody>
 </table>
@@ -53,9 +59,20 @@
 	}
 </style>
 
-<script>
+<script lang="ts">
 	import { page } from '$app/state'
-	import { langs_str } from '@/ui/LanguageSelector.svelte'
+	import { l, langs_str } from '@/ui/LanguageSelector.svelte'
+	import { q } from '@/ui/Search.svelte'
 
 	const { chapters } = page.data
+
+	function hideOnSearch(chapter: OnePiece.Chapter[number]) {
+		const query = q()
+		const title = String(chapter[l()])
+
+		if (!!query && !title.toLowerCase().includes(query.toLowerCase()))
+			return true
+
+		return false
+	}
 </script>
