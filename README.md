@@ -4,4 +4,5 @@
 
 ## Directory
 
-- [`chapters.yml`](chapters.yml) (Japanese and English)
+- [Website](https://onepiece-chapters.vercel.app)
+- [`chapters.yml`](src/data/chapters.yml) (Japanese and English)
