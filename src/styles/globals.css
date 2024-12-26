@@ -1,1 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
+
 @import 'tailwindcss';
+
+@theme {
+	--font-serif: 'M PLUS Rounded 1c', serif;
+}
+
+@layer base {
+	:target {
+		scroll-margin-top: var(--header-height);
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	label,
+	select {
+		cursor: pointer;
+	}
+}

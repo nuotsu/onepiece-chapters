@@ -4,10 +4,12 @@ declare global {
 	namespace App {
 		// interface Error {}
 		// interface Locals {}
-		// interface PageData {}
+		interface PageData {
+			chapters: OnePiece.Chapter
+		}
 		// interface PageState {}
 		// interface Platform {}
 	}
 }
 
-export {};
+export {}

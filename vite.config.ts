@@ -4,9 +4,5 @@ import tailwindcss from '@tailwindcss/vite'
 import ViteYaml from '@modyfi/vite-plugin-yaml'
 
 export default defineConfig({
-	plugins: [
-		sveltekit(),
-		tailwindcss(),
-		ViteYaml(),
-	]
+	plugins: [sveltekit(), tailwindcss(), ViteYaml()],
 })

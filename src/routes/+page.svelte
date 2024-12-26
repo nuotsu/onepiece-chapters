@@ -1,1 +1,5 @@
-<h1>One Piece Chapters</h1>
+<Chapters />
+
+<script>
+	import Chapters from '@/ui/Chapters.svelte'
+</script>
