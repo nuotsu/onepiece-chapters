@@ -1,7 +1,7 @@
 <table class="w-full">
 	<tbody>
 		{#each Object.entries(chapters) as [key, chapter]}
-			{#if !hideOnSearch(chapter)}
+			{#if !hideOnSearch(chapter, Number(key))}
 				<tr id="ch-{key}">
 					<th>
 						<span lang="ja">第{key}話</span>
@@ -62,16 +62,23 @@
 <script lang="ts">
 	import { page } from '$app/state'
 	import { l, langs_str } from '@/ui/LanguageSelector.svelte'
-	import { q } from '@/ui/Search.svelte'
+	import { q } from '@/ui/search/Query.svelte'
+	import { n } from '@/ui/search/ChapterNumber.svelte'
 
 	const { chapters } = page.data
 
-	function hideOnSearch(chapter: OnePiece.Chapter[number]) {
+	function hideOnSearch(chapter: OnePiece.Chapter[number], key: number) {
 		const query = q()
 		const title = String(chapter[l()])
+		const number = n()
 
-		if (!!query && !title.toLowerCase().includes(query.toLowerCase()))
+		if (!!number) {
+			return number !== key
+		}
+
+		if (!!query && !title.toLowerCase().includes(query.toLowerCase())) {
 			return true
+		}
 
 		return false
 	}

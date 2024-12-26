@@ -10,6 +10,15 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
+
+	namespace OnePiece {
+		interface Chapter {
+			[key: number]: {
+				ja: string
+				en: string | null
+			}
+		}
+	}
 }
 
 export {}

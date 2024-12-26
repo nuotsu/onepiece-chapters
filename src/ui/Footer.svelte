@@ -8,5 +8,5 @@
 		</small>
 	</p>
 
-	<a href="/#" title="To top">⏫</a>
+	<a href="/" title="To top">⏫</a>
 </footer>
