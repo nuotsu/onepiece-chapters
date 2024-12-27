@@ -7,12 +7,18 @@
 }
 
 @layer base {
+	:root {
+		color-scheme: light dark;
+	}
+
 	:target {
 		scroll-margin-top: var(--header-height);
 	}
 
 	html {
 		scroll-behavior: smooth;
+
+		@apply canvas;
 	}
 
 	body {
@@ -23,4 +29,12 @@
 	select {
 		cursor: pointer;
 	}
+}
+
+@utility canvas {
+	@apply bg-white dark:bg-black text-black dark:text-white;
+}
+
+@utility bordered {
+	@apply border border-neutral-100 dark:border-neutral-800 focus-within:border-neutral-300 dark:focus-within:border-neutral-600;
 }

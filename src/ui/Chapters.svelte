@@ -1,36 +1,48 @@
 <table class="w-full">
-	<tbody>
-		{#each Object.entries(chapters) as [key, chapter]}
-			{#if !hideOnSearch(chapter, Number(key))}
-				<tr id="ch-{key}">
-					<th>
-						<span lang="ja">第{key}話</span>
-						<span lang="en">Ch.{key}</span>
-					</th>
+	{#if q() !== ''}
+		<thead>
+			<tr>
+				<td colspan="2" class="text-xs p-2 text-center">
+					{count(filteredChapters, 'chapter')} found
+				</td>
+			</tr>
+		</thead>
+	{/if}
 
-					<td class="w-full">
-						{#each langs_str as lang}
-							<div {lang}>
-								<a href="#ch-{key}">{chapter[lang]}</a>
-							</div>
-						{/each}
-					</td>
-				</tr>
-			{/if}
+	<tbody>
+		{#each filteredChapters as [key, chapter] (chapter.ja)}
+			<tr id="ch-{key}" class="canvas">
+				<th>
+					<span lang="ja">第{key}話</span>
+					<span lang="en">Ch.{key}</span>
+				</th>
+
+				<td class="w-full">
+					{#each langs_str as lang}
+						<div {lang}>
+							<a href="#ch-{key}">{chapter[lang]}</a>
+						</div>
+					{/each}
+				</td>
+			</tr>
 		{/each}
 	</tbody>
 </table>
 
 <style>
-	tr {
-		background-color: #fff;
-
+	:not(thead) > tr {
 		&:nth-child(even) {
-			background-color: var(--color-gray-100);
+			background-color: light-dark(
+				var(--color-neutral-100),
+				var(--color-neutral-900)
+			);
 		}
 
 		&:hover:not(:target) :is(th, td) {
-			background-color: var(--color-amber-100);
+			background-color: light-dark(
+				var(--color-amber-100),
+				var(--color-amber-900)
+			);
 		}
 
 		&:target {
@@ -38,7 +50,10 @@
 			top: var(--header-height);
 			bottom: 0;
 			z-index: 1;
-			background-color: var(--color-green-100);
+			background-color: light-dark(
+				var(--color-green-100),
+				var(--color-green-900)
+			);
 		}
 	}
 
@@ -64,8 +79,15 @@
 	import { l, langs_str } from '@/ui/LanguageSelector.svelte'
 	import { q } from '@/ui/search/Query.svelte'
 	import { n } from '@/ui/search/ChapterNumber.svelte'
+	import { count } from '@/lib/utils'
 
 	const { chapters } = page.data
+
+	const filteredChapters = $derived(
+		Object.entries(chapters).filter(
+			([key, chapter]) => !hideOnSearch(chapter, Number(key)),
+		),
+	)
 
 	function hideOnSearch(chapter: OnePiece.Chapter[number], key: number) {
 		const query = q()

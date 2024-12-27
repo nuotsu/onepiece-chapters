@@ -6,11 +6,9 @@
 	}}
 />
 
-<label
-	class="grow flex items-center border focus-within:border-gray-300 border-gray-100"
->
+<label class="grow flex items-center bordered">
 	<img
-		class="px-1 size-6"
+		class="px-1 mx-1 size-6 dark:invert"
 		src="https://icons.nuotsu.dev/vsc/VscSearch"
 		alt=""
 		loading="lazy"

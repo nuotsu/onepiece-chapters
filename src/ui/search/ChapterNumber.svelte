@@ -1,8 +1,6 @@
-<label
-	class="flex items-center border focus-within:border-gray-300 border-gray-100"
->
+<label class="flex items-center bordered">
 	<img
-		class="px-1 size-6"
+		class="px-1 size-6 dark:invert"
 		src="https://icons.nuotsu.dev/bs/BsHash"
 		alt=""
 		loading="lazy"
