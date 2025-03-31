@@ -10,7 +10,7 @@
 	{/if}
 
 	<tbody>
-		{#each filteredChapters as [key, chapter] (chapter.ja)}
+		{#each filteredChapters as [key, chapter] (chapter.ja || chapter.en)}
 			<tr id="ch-{key}" class="canvas">
 				<th>
 					<span lang="ja">第{key}話</span>
